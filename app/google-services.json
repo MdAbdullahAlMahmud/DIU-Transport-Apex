@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "487778823860",
+    "project_id": "diu-transport-apex-76cf7",
+    "storage_bucket": "diu-transport-apex-76cf7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:487778823860:android:55142ef8b704e24025b1e1",
+        "android_client_info": {
+          "package_name": "com.socalledengineers.diutransportapex"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "487778823860-spaetpi3rkdce0b7704gq2uli8m6qn5o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAogIjm_ruV5P9e50jvSzFnvNtElzfDpas"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "487778823860-spaetpi3rkdce0b7704gq2uli8m6qn5o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
