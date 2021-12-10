@@ -67,8 +67,8 @@
     <string name="teamMemberOne">Md Abdullah Al Mahmud</string>
     <string name="teamMemberTwo">Md Ashraful Islam</string>
     <string name="member1Phone">01303156228</string>
-    <string name="member1Email" >abdullah15-12316@diu.edu.bd</string>
-    <string name="member2Phone" >01303156228</string>
-    <string name="member2Email" >ashraful15-12271@diu.edu.bd</string>
-    <string name="mailSubject" >DIU Transportation Apex Report</string>
+    <string name="member1Email">abdullah15-12316@diu.edu.bd</string>
+    <string name="member2Phone">01303156228</string>
+    <string name="member2Email">ashraful15-12271@diu.edu.bd</string>
+    <string name="mailSubject">DIU Transportation Apex Report</string>
 </resources>
