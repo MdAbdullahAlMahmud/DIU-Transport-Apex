@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/_12sdp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <TextView
+        android:id="@+id/minAgoTxt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:autoSizeTextType="uniform"
+        android:text="8:30 - 11:00"
+        android:textColor="@color/primaryColor"
+        android:textSize="@dimen/_10sdp"
+        app:layout_constraintStart_toEndOf="@+id/timeImage"
+        app:layout_constraintTop_toTopOf="@+id/timeImage" />
+
+    <ImageView
+        android:id="@+id/timeImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_time_icon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/ratingCountTxt"
+        app:layout_constraintTop_toBottomOf="@+id/ratingCountTxt" />
+
+    <TextView
+        android:id="@+id/ratingUserTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:text="Bus: Dhk -54 metro"
+        android:textColor="@color/primaryColor"
+        android:textSize="@dimen/_9sdp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/ratingCountTxt"
+        app:layout_constraintTop_toBottomOf="@+id/donorAddressTxt" />
+
+    <TextView
+        android:id="@+id/ratingCountTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:text="Dhanmondi to DSC"
+        android:textColor="@color/primaryColor"
+        android:textSize="@dimen/_9sdp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/donorAddressTxt"
+        app:layout_constraintTop_toBottomOf="@+id/donorAddressTxt" />
+
+    <TextView
+        android:id="@+id/donorAddressTxt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:autoSizeTextType="uniform"
+        android:text="Age : 45"
+        android:textColor="@color/primaryColor"
+        android:textSize="@dimen/_10sdp"
+        app:layout_constraintEnd_toEndOf="@+id/nameTxt"
+        app:layout_constraintStart_toStartOf="@+id/nameTxt"
+        app:layout_constraintTop_toBottomOf="@+id/nameTxt" />
+
+    <TextView
+        android:id="@+id/nameTxt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:layout_marginLeft="@dimen/_8sdp"
+        android:layout_marginEnd="@dimen/_12sdp"
+        android:layout_marginRight="@dimen/_12sdp"
+        android:text="Ashraful Islam "
+        android:textColor="@color/primaryColor"
+        android:textSize="@dimen/_13sdp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/donorBloodGroup"
+        app:layout_constraintTop_toTopOf="@+id/donorProfileImage" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/donorProfileImage"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/white"
+        android:src="@drawable/user_image_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent" />
+
+    <TextView
+        android:id="@+id/donorBloodGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/blood_group_background_shape"
+        android:gravity="center"
+        android:text="Id:104"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_9sdp"
+        android:textStyle="bold"
+        android:translationZ="@dimen/_90sdp"
+        app:layout_constraintBottom_toBottomOf="@+id/donorProfileImage"
+        app:layout_constraintEnd_toEndOf="@+id/donorProfileImage"
+        app:layout_constraintStart_toEndOf="@+id/donorProfileImage"
+        app:layout_constraintTop_toBottomOf="@+id/donorProfileImage" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="right"
+        app:constraint_referenced_ids="donorBloodGroup"
+        tools:layout_editor_absoluteX="117dp" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="donorBloodGroup,minAgoTxt,timeImage"
+        tools:layout_editor_absoluteY="117dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,6 +17,15 @@
             android:name=".RoutesWebView"
             android:exported="false" />
         <activity
+            android:name=".DemoUserHome"
+            android:exported="true" >
+
+
+        </activity>
+        <activity
+            android:name=".SeatStatusActivity"
+            android:exported="true"></activity>
+        <activity
             android:name=".ui.feedback.FeedbackActivity"
             android:exported="false" />
         <activity
@@ -29,7 +38,7 @@
             android:name=".ui.contact_us.ContactUsActivity"
             android:exported="false" />
         <activity
-            android:name=".RoutesListActivity"
+            android:name=".DriverBusListActivity"
             android:exported="false" />
         <activity
             android:name=".HomeActivity"
@@ -45,6 +54,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity android:name=".ui.registration.AccountRegistrationActivity" />
         <activity android:name=".ui.login.ForgotPasswordActivity" />
@@ -59,6 +69,7 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+
     </application>
 
 </manifest>
