@@ -16,6 +16,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.socalledengineers.diutransportapex.model.Bus;
+import com.socalledengineers.diutransportapex.model.BusItem;
 import com.socalledengineers.diutransportapex.utils.Display;
 import com.socalledengineers.diutransportapex.utils.NodeName;
 import com.socalledengineers.diutransportapex.utils.Utils;
@@ -41,10 +42,10 @@ public class BusActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Bus  bus1 = new Bus();
-                List<Integer> seatList = new ArrayList();
+                BusItem bus1 = new BusItem();
+                List<String> seatList = new ArrayList();
                 for (int i = 0; i < 30; i++) {
-                    seatList.add(0);
+                    seatList.add("0");
                 }
                 bus1.setSeats(seatList);
 
@@ -79,12 +80,11 @@ public class BusActivity extends AppCompatActivity {
                 bus1.setLon(Utils.versityLatLng.longitude);
                 bus1.setName("Demo Name");
 
-/*
-               String docId = reference.child(NodeName.BUS_NODE).push().getKey();
-                bus1.setDoc_id(docId);*/
+                String docId = reference.child(NodeName.BUS_TRIP_NODE).push().getKey();
+                bus1.setDoc_id(docId);
+
                 bus1.setRoutes_url("https://www.google.com/maps/d/embed?mid=1J8QtXb3iMgXJTsECsIzdzu3mIgDio5Al&ll=23.815653053593255%2C90.34311500000001&z=12");
                 addBus(bus1);
-                //simpleInsert();
             }
         });
 
@@ -92,15 +92,14 @@ public class BusActivity extends AppCompatActivity {
     }
 
 
-    private void addBus(Bus bus){
+    private void addBus(BusItem bus){
         dialog.setMessage("adding bus..");
         Display.infoToast(BusActivity.this,bus.getDoc_id());
         dialog.setCancelable(false);
         dialog.setCanceledOnTouchOutside(false);
         dialog.show();
 
-
-       /* reference.child(NodeName.BUS_NODE).setValue(bus).addOnCompleteListener(new OnCompleteListener<Void>() {
+        reference.child(NodeName.BUS_NODE).child(bus.getDoc_id()).setValue(bus).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()){
@@ -117,10 +116,10 @@ public class BusActivity extends AppCompatActivity {
                 }
 
             }
-        });*/
+        });
 
 
-        String document_id = firestore.collection(NodeName.BUS_NODE).document().getId();
+       /* String document_id = firestore.collection(NodeName.BUS_NODE).document().getId();
         bus.setDoc_id(document_id);
 
         firestore.collection(NodeName.BUS_NODE).document(document_id).set(bus).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -139,7 +138,7 @@ public class BusActivity extends AppCompatActivity {
 
                 }
             }
-        });
+        });*/
 
 
 

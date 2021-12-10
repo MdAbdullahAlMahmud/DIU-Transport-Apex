@@ -28,7 +28,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/routesItemBusNo"
+            android:id="@+id/tripFromTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -39,7 +39,7 @@
             app:layout_constraintTop_toTopOf="@+id/imageView" />
 
         <TextView
-            android:id="@+id/routesItemDeouruteTimeTV"
+            android:id="@+id/tripToTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -47,7 +47,7 @@
             android:text="Depurature 8.30 AM"
             android:textColor="@color/grey_600"
             app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toBottomOf="@+id/routesItemBusNo" />
+            app:layout_constraintTop_toBottomOf="@+id/tripFromTV" />
 
 
         <com.google.android.material.button.MaterialButton
@@ -63,11 +63,11 @@
             app:backgroundTint="@color/liveLocationColorButton"
             app:cornerRadius="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/routesItemLiveLocationButton"
-            app:layout_constraintTop_toTopOf="@+id/routesItemLiveLocationButton" />
+            app:layout_constraintStart_toEndOf="@+id/tripStartButton"
+            app:layout_constraintTop_toTopOf="@+id/tripStartButton" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/routesItemLiveLocationButton"
+            android:id="@+id/tripStartButton"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/_30sdp"
             android:layout_marginBottom="8dp"
@@ -78,7 +78,7 @@
             app:backgroundTint="@color/minAwayColorButton"
             app:cornerRadius="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/routesItemDeouruteTimeTV"
-            app:layout_constraintTop_toBottomOf="@+id/routesItemDeouruteTimeTV" />
+            app:layout_constraintStart_toStartOf="@+id/tripToTV"
+            app:layout_constraintTop_toBottomOf="@+id/tripToTV" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

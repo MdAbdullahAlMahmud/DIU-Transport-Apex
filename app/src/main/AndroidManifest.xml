@@ -38,7 +38,7 @@
             android:name=".ui.contact_us.ContactUsActivity"
             android:exported="false" />
         <activity
-            android:name=".RoutesListActivity"
+            android:name=".DriverBusListActivity"
             android:exported="false" />
         <activity
             android:name=".HomeActivity"

@@ -14,9 +14,13 @@ import android.widget.TextView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.socalledengineers.diutransportapex.model.Bus;
+import com.socalledengineers.diutransportapex.model.BusItem;
 import com.socalledengineers.diutransportapex.utils.Display;
 import com.socalledengineers.diutransportapex.utils.NodeName;
 
@@ -31,11 +35,14 @@ public class RoutesWebView extends AppCompatActivity {
     private FirebaseFirestore firestore;
 
     private MaterialButton seatBookedButton;
+    private DatabaseReference reference;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_routes_web_view);
         init();
+        reference = FirebaseDatabase.getInstance().getReference();
         firestore =FirebaseFirestore.getInstance();
 
         activity_name = findViewById(R.id.activity_name);
@@ -43,7 +50,8 @@ public class RoutesWebView extends AppCompatActivity {
 
         if (getIntent()!=null){
             String id = getIntent().getExtras().getString(NodeName.INTENT_MAP_MARKER);
-            getSelectedBusInfo(id);
+            //getSelectedBusInfo(id);
+            getSelectedBus(id);
         }
 
 
@@ -64,6 +72,7 @@ public class RoutesWebView extends AppCompatActivity {
 
     }
 
+    //23.760568583248563, 90.37265697264328
     private void init(){
         seatBookedButton= findViewById(R.id.seatBookedButton);
     }
@@ -82,6 +91,25 @@ public class RoutesWebView extends AppCompatActivity {
                         mWebView.loadUrl(routes_url);
                     }
 
+                }
+            }
+        });
+
+    }
+
+    private void getSelectedBus(String doc_id){
+        reference.child(NodeName.BUS_NODE).child(doc_id).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (task.isSuccessful()){
+
+                    BusItem busItem = task.getResult().getValue(BusItem.class);
+                    if (busItem.getRoutes_url()!=null){
+                        String url = busItem.getRoutes_url();
+                        mWebView.loadUrl(url);
+                    }else {
+                        mWebView.loadUrl(routes_url);
+                    }
                 }
             }
         });

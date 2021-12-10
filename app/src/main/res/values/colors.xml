@@ -9,7 +9,10 @@
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+<!--
     <color name="cardBackgorung">#D9E8E0</color>
+-->
+    <color name="cardBackgorung">#A1DABC</color>
     <color name="colorAccent">#FF6c02</color>
     <color name="background">#EEEDEf</color>
     <color name="colourPrimary">#2D383F</color>

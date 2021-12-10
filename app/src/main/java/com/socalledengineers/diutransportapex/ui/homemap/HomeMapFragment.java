@@ -3,7 +3,6 @@ package com.socalledengineers.diutransportapex.ui.homemap;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,7 +17,6 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import com.airbnb.lottie.L;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdate;
@@ -30,35 +28,27 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.maps.DirectionsApi;
-import com.google.maps.DirectionsApiRequest;
-import com.google.maps.GeoApiContext;
-import com.google.maps.model.DirectionsLeg;
-import com.google.maps.model.DirectionsResult;
-import com.google.maps.model.DirectionsRoute;
-import com.google.maps.model.DirectionsStep;
-import com.google.maps.model.Distance;
-import com.google.maps.model.EncodedPolyline;
 import com.socalledengineers.diutransportapex.R;
-import com.socalledengineers.diutransportapex.RoutesListActivity;
+import com.socalledengineers.diutransportapex.DriverBusListActivity;
 import com.socalledengineers.diutransportapex.RoutesWebView;
 import com.socalledengineers.diutransportapex.model.Bus;
+import com.socalledengineers.diutransportapex.model.BusItem;
 import com.socalledengineers.diutransportapex.utils.Display;
 import com.socalledengineers.diutransportapex.utils.NodeName;
 import com.socalledengineers.diutransportapex.utils.Utils;
 
-import org.w3c.dom.Node;
-
-import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 
 public class HomeMapFragment extends Fragment implements OnMapReadyCallback {
@@ -76,6 +66,7 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback {
     private FirebaseFirestore firestore;
 
 
+    private DatabaseReference databaseReference;
     public HomeMapFragment() {
     }
 
@@ -91,6 +82,7 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback {
     private void init(View view) {
         firestore = FirebaseFirestore.getInstance();
         busArrayList = new ArrayList<>();
+        busItems = new ArrayList<>();
         homeMapBusSearch = view.findViewById(R.id.homeMapBusSearch);
 
     }
@@ -100,11 +92,11 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback {
         super.onViewCreated(view, savedInstanceState);
         getLocationPermission();
 
-
+        databaseReference = FirebaseDatabase.getInstance().getReference();
         homeMapBusSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getContext(), RoutesListActivity.class));
+                startActivity(new Intent(getContext(), DriverBusListActivity.class));
             }
         });
     }
@@ -201,6 +193,7 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback {
 
     }
     private ArrayList<Bus> busArrayList;
+    private ArrayList<BusItem> busItems;
     private void getAllBusFromDatabase(){
         busArrayList.clear();
         firestore.collection(NodeName.BUS_NODE).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -231,15 +224,47 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback {
         });
 //23.760686416205747, 90.372689161463
     }
+    private  void getAllLiveBus(){
+        busItems.clear();
+        databaseReference.child(NodeName.BUS_NODE).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                if (snapshot.exists()){
+                    for (DataSnapshot documents_snapshot : snapshot.getChildren()) {
+                        BusItem bus = documents_snapshot.getValue(BusItem.class);
+                        busItems.add(bus);
+                        String from = bus.getFrom();
+                        String to = bus.getTo();
+                        if (bus.getLat() ==null || bus.getLon()==null){
+                            bus.setLat(Utils.versityLatLng.latitude);
+                            bus.setLon(Utils.versityLatLng.longitude);
+                        }
+                        LatLng latLng = new LatLng(bus.getLat(),bus.getLon());
+                        String from_to = from +" ---> " + to;
+                        addBusToMap(latLng,bus.getName(),from_to,bus.getDoc_id());
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
 
     @Override
     public void onStart() {
         super.onStart();
-        getAllBusFromDatabase();
+        //getAllBusFromDatabase();
+        getAllLiveBus();
     }
 
     private  void addBusToMap(LatLng lat_lng, String name, String from_to, String doc_id){
-
+        googleMap.clear();
         MarkerOptions map_marker = new MarkerOptions()
                 .position(lat_lng)
                 .title(from_to)

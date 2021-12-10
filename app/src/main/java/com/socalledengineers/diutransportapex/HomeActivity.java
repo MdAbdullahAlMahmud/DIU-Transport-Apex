@@ -61,7 +61,7 @@ public class HomeActivity extends AppCompatActivity {
                         startActivity(new Intent(HomeActivity.this, BusActivity.class));
                         return true;
                     case R.id.activityItem:
-                        Display.infoToast(HomeActivity.this,"Clicked");
+                        startActivity(new Intent(HomeActivity.this, DriverBusListActivity.class));
                         return true;
                     case R.id.profileItem:
                         setUpFragment(new HomeMapFragment());
