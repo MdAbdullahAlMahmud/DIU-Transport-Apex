@@ -5,15 +5,22 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
+    <color name="navStrockColor">#BFBDBD</color>
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="cardBackgorung">#D9E8E0</color>
     <color name="colorAccent">#FF6c02</color>
     <color name="background">#EEEDEf</color>
     <color name="colourPrimary">#2D383F</color>
     <color name="colourPrimaryDark">#2D383F</color>
     <color name="primaryColor">#80D516</color>
     <color name="toolColor">#6EB16B</color>
+
+    <color name="secondaryColor">#016732</color>
+    <color name="minAwayColorButton">#CDF0EA</color>
+    <color name="liveLocationColorButton">#FFF0CC</color>
+
 
     <color name="backgroundColor">#E8EDF0</color>
     <color name="limeGreenColor">#80D516</color>
@@ -50,4 +57,17 @@
     <color name="light_green_A400">#76FF03</color>
     <color name="light_green_A700">#64DD17</color>
     <!-- Light Green -->
+
+    <!-- Grey -->
+    <color name="grey_50">#FAFAFA</color>
+    <color name="grey_100">#F5F5F5</color>
+    <color name="grey_200">#EEEEEE</color>
+    <color name="grey_300">#E0E0E0</color>
+    <color name="grey_400">#BDBDBD</color>
+    <color name="grey_500">#9E9E9E</color>
+    <color name="grey_600">#757575</color>
+    <color name="grey_700">#616161</color>
+    <color name="grey_800">#424242</color>
+    <color name="grey_900">#212121</color>
+    <!-- Grey -->
 </resources>
