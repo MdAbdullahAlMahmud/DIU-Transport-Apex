@@ -6,13 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.login.LoginActivity"
-    android:background="@drawable/authencitaion_background">
+    android:background="@color/primaryColor">
     <View
         android:id="@+id/view2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:alpha=".75"
-        android:background="@color/green_A400"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
