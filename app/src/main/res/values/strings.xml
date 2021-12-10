@@ -40,6 +40,7 @@
     <string name="no">no</string>
     <string name="change_password">Change Password</string>
     <string name="contact_us">Contact Us</string>
+    <string name="routes_details">Routes Details</string>
     <string name="faq">FAQ</string>
     <string name="feedback">Feedback</string>
     <string name="creating_account_dialoge">creating account...</string>

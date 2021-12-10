@@ -60,7 +60,7 @@ public class HomeActivity extends AppCompatActivity {
                         startActivity(new Intent(HomeActivity.this, BusActivity.class));
                         return true;
                     case R.id.activityItem:
-                        setUpFragment(new HomeMapFragment());
+                        startActivity(new Intent(HomeActivity.this, RoutesWebView.class));
                         return true;
                     case R.id.profileItem:
                         setUpFragment(new HomeMapFragment());

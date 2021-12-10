@@ -97,7 +97,9 @@ public class BusActivity extends AppCompatActivity {
         dialog.setCancelable(false);
         dialog.setCanceledOnTouchOutside(false);
         dialog.show();
-        reference.child(NodeName.BUS_NODE).setValue(bus).addOnCompleteListener(new OnCompleteListener<Void>() {
+
+
+        /*reference.child(NodeName.BUS_NODE).setValue(bus).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()){
@@ -114,9 +116,10 @@ public class BusActivity extends AppCompatActivity {
                 }
 
             }
-        });
+        });*/
 
-        /*String document_id = firestore.collection(NodeName.BUS_NODE).document().getId();
+
+        String document_id = firestore.collection(NodeName.BUS_NODE).document().getId();
         bus.setDoc_id(document_id);
         firestore.collection(NodeName.BUS_NODE).document(document_id).set(bus).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
@@ -133,7 +136,7 @@ public class BusActivity extends AppCompatActivity {
 
                 }
             }
-        });*/
+        });
 
 
 
