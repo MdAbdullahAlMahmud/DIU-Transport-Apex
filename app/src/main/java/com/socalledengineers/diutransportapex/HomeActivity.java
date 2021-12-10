@@ -89,7 +89,7 @@ public class HomeActivity extends AppCompatActivity {
     private void init() {
         mAuth = FirebaseAuth.getInstance();
         homeBottomNavigation = findViewById(R.id.homeBottomNavigation);
-        navMenuButton = findViewById(R.id.navButton);
+        navButton = findViewById(R.id.navButton);
         frameContainer = findViewById(R.id.frameContainer);
         home_drawer = findViewById(R.id.home_drawer);
 
