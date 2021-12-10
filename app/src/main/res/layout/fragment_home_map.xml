@@ -28,14 +28,16 @@
         app:cardMaxElevation="@dimen/_7sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/primaryColor"
 
         >
 
         <ImageButton
-            android:id="@+id/homeMapBloodSearch"
+            android:id="@+id/homeMapBusSearch"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="?attr/selectableItemBackgroundBorderless"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:background="@color/primaryColor"
             android:src="@drawable/ic_baseline_search_24"
             />
     </androidx.cardview.widget.CardView>

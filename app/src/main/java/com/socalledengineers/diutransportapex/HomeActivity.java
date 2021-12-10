@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.mkrlabs.customstatusbar.CustomStatusBar;
+import com.socalledengineers.diutransportapex.model.Bus;
 import com.socalledengineers.diutransportapex.ui.contact_us.ContactUsActivity;
 import com.socalledengineers.diutransportapex.ui.faq.FAQActivity;
 import com.socalledengineers.diutransportapex.ui.feedback.FeedbackActivity;
@@ -56,7 +57,7 @@ public class HomeActivity extends AppCompatActivity {
                         setUpFragment(new HomeMapFragment());
                         return true;
                     case R.id.requestItem:
-                        setUpFragment(new HomeMapFragment());
+                        startActivity(new Intent(HomeActivity.this, BusActivity.class));
                         return true;
                     case R.id.activityItem:
                         setUpFragment(new HomeMapFragment());

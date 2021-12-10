@@ -1,20 +1,16 @@
 package com.socalledengineers.diutransportapex.ui.homemap;
 
 import android.Manifest;
-import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.DatePicker;
 import android.widget.ImageButton;
-import android.widget.TextView;
-import android.widget.TimePicker;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,15 +28,25 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.android.material.card.MaterialCardView;
+import com.google.maps.DirectionsApi;
+import com.google.maps.DirectionsApiRequest;
+import com.google.maps.GeoApiContext;
+import com.google.maps.model.DirectionsLeg;
+import com.google.maps.model.DirectionsResult;
+import com.google.maps.model.DirectionsRoute;
+import com.google.maps.model.DirectionsStep;
+import com.google.maps.model.Distance;
+import com.google.maps.model.EncodedPolyline;
 import com.socalledengineers.diutransportapex.R;
 import com.socalledengineers.diutransportapex.RoutesListActivity;
 import com.socalledengineers.diutransportapex.utils.Display;
 
-import java.util.Calendar;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class HomeMapFragment extends Fragment implements OnMapReadyCallback {
@@ -54,11 +60,8 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback {
     private float DEFAULT_ZOOM = 16f;
 
     private FusedLocationProviderClient fusedLocationProviderClient;
+    private ImageButton homeMapBusSearch;
 
-    private ImageButton homeMapBloodSearch;
-    private int mYear, mMonth, mDay, mHour, mMinute;
-
-    private TextView findDonarDateTV,selectTimeTV;
 
     public HomeMapFragment() {
     }
@@ -73,7 +76,7 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback {
     }
 
     private void init(View view) {
-        homeMapBloodSearch = view.findViewById(R.id.homeMapBloodSearch);
+        homeMapBusSearch = view.findViewById(R.id.homeMapBusSearch);
 
     }
 
@@ -83,7 +86,7 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback {
         getLocationPermission();
 
 
-        homeMapBloodSearch.setOnClickListener(new View.OnClickListener() {
+        homeMapBusSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getContext(), RoutesListActivity.class));
@@ -98,6 +101,69 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback {
         supportMapFragment.getMapAsync(this);
     }
 
+    private void  getDirectionOfMap(String from , String to){
+        List<LatLng> path = new ArrayList();
+
+        GeoApiContext context = new GeoApiContext.Builder()
+                .apiKey(getResources().getString(R.string.MAPS_API_KEY))
+                .build();
+        DirectionsApiRequest req = DirectionsApi.getDirections(context, from, to);
+        try {
+            Display.infoToast(getContext(),"Direction");
+            DirectionsResult res = req.await();
+
+            //Loop through legs and steps to get encoded polylines of each step
+            if (res.routes != null && res.routes.length > 0) {
+                DirectionsRoute route = res.routes[0];
+
+                if (route.legs !=null) {
+                    for(int i=0; i<route.legs.length; i++) {
+                        DirectionsLeg leg = route.legs[i];
+                        if (leg.steps != null) {
+                            for (int j=0; j<leg.steps.length;j++){
+                                DirectionsStep step = leg.steps[j];
+                                if (step.steps != null && step.steps.length >0) {
+                                    for (int k=0; k<step.steps.length;k++){
+                                        DirectionsStep step1 = step.steps[k];
+                                        EncodedPolyline points1 = step1.polyline;
+                                        if (points1 != null) {
+                                            //Decode polyline and add points to list of route coordinates
+                                            List<com.google.maps.model.LatLng> coords1 = points1.decodePath();
+                                            for (com.google.maps.model.LatLng coord1 : coords1) {
+                                                path.add(new LatLng(coord1.lat, coord1.lng));
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    EncodedPolyline points = step.polyline;
+                                    if (points != null) {
+                                        //Decode polyline and add points to list of route coordinates
+                                        List<com.google.maps.model.LatLng> coords = points.decodePath();
+                                        for (com.google.maps.model.LatLng coord : coords) {
+                                            path.add(new LatLng(coord.lat, coord.lng));
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } catch(Exception ex) {
+            Display.errorToast(getContext(),"Error" + ex.getLocalizedMessage());
+            Log.e(TAG, ex.getLocalizedMessage());
+        }
+
+        //Draw the polyline
+        if (path.size() > 0) {
+            PolylineOptions opts = new PolylineOptions().addAll(path).color(Color.BLUE).width(5);
+            googleMap.addPolyline(opts);
+        }
+
+        googleMap.getUiSettings().setZoomControlsEnabled(true);
+
+        //googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(zaragoza, 6));
+    }
 
     private void getLocationPermission() {
 
@@ -151,9 +217,46 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback {
             Log.e(TAG, "SecurityException " + e.getMessage());
         }
     }
+    public double CalculationByDistance(LatLng StartP, LatLng EndP) {
+        int Radius = 6371;// radius of earth in Km
+        double lat1 = StartP.latitude;
+        double lat2 = EndP.latitude;
+        double lon1 = StartP.longitude;
+        double lon2 = EndP.longitude;
+        double dLat = Math.toRadians(lat2 - lat1);
+        double dLon = Math.toRadians(lon2 - lon1);
+        double a = Math.sin(dLat / 2) * Math.sin(dLat / 2)
+                + Math.cos(Math.toRadians(lat1))
+                * Math.cos(Math.toRadians(lat2)) * Math.sin(dLon / 2)
+                * Math.sin(dLon / 2);
+        double c = 2 * Math.asin(Math.sqrt(a));
+        double valueResult = Radius * c;
+        double km = valueResult / 1;
+        DecimalFormat newFormat = new DecimalFormat("####");
+        int kmInDec = Integer.valueOf(newFormat.format(km));
+        double meter = valueResult % 1000;
+        int meterInDec = Integer.valueOf(newFormat.format(meter));
+        Log.i("Radius Value", "" + valueResult + "   KM  " + kmInDec
+                + " Meter   " + meterInDec);
 
+        float[] results = new float[1];
+        Location.distanceBetween(StartP.latitude, StartP.longitude,
+                EndP.latitude, EndP.longitude, results);
+        float distance = results[0];
+
+        return Radius * c;
+    }
     private void moveCameraToLocation(LatLng latLng, float zoom) {
+        String from =latLng.latitude+","+ latLng.longitude;
+        String to = "23.752981287671716, 90.3777078984378";
+        //getDirectionOfMap(from,to);
 
+        LatLng versityLatLng = new LatLng(23.752981287671716,90.3777078984378);
+        float[] results = new float[1];
+        Location.distanceBetween(latLng.latitude, latLng.longitude,
+                versityLatLng.latitude, versityLatLng.longitude, results);
+        float distance = results[0];
+        Display.successToast(getContext(),distance+"");
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, zoom);
         googleMap.animateCamera(cameraUpdate);
 
@@ -172,6 +275,20 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback {
                 .snippet("Versity");
         googleMap.addMarker(markerOptions);
         googleMap.addMarker(diuMarker);
+
+
+    }
+
+
+    private  void addBusToMap(LatLng lat_lng,String name,String from_to){
+
+
+        MarkerOptions map_marker = new MarkerOptions()
+                .position(lat_lng)
+                .title(name)
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.bus_icon))
+                .snippet(from_to);
+        googleMap.addMarker(map_marker);
 
 
     }
@@ -203,14 +320,5 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback {
         if (mLocationPermission) {
             getDeviceCurrentLocation();
         }
-        /*LatLng latLng = new LatLng(27.1751,78.0421);
-        MarkerOptions markerOptions = new MarkerOptions()
-                .position(latLng)
-                .title("Taj Mahl")
-                .snippet("Situated in India");
-
-        googleMap.addMarker(markerOptions);
-        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng,16);
-        googleMap.animateCamera(cameraUpdate);*/
     }
 }
