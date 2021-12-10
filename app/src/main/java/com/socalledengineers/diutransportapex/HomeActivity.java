@@ -27,6 +27,7 @@ import com.socalledengineers.diutransportapex.ui.feedback.FeedbackActivity;
 import com.socalledengineers.diutransportapex.ui.homemap.HomeMapFragment;
 import com.socalledengineers.diutransportapex.ui.login.LoginActivity;
 import com.socalledengineers.diutransportapex.ui.profile.ProfileActivity;
+import com.socalledengineers.diutransportapex.utils.Display;
 
 public class HomeActivity extends AppCompatActivity {
     private FrameLayout frameContainer;
@@ -60,7 +61,7 @@ public class HomeActivity extends AppCompatActivity {
                         startActivity(new Intent(HomeActivity.this, BusActivity.class));
                         return true;
                     case R.id.activityItem:
-                        startActivity(new Intent(HomeActivity.this, RoutesWebView.class));
+                        Display.infoToast(HomeActivity.this,"Clicked");
                         return true;
                     case R.id.profileItem:
                         setUpFragment(new HomeMapFragment());

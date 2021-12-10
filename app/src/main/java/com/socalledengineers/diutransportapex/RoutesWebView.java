@@ -3,7 +3,9 @@ package com.socalledengineers.diutransportapex;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ImageView;
@@ -11,9 +13,11 @@ import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.button.MaterialButton;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.socalledengineers.diutransportapex.model.Bus;
+import com.socalledengineers.diutransportapex.utils.Display;
 import com.socalledengineers.diutransportapex.utils.NodeName;
 
 public class RoutesWebView extends AppCompatActivity {
@@ -26,10 +30,12 @@ public class RoutesWebView extends AppCompatActivity {
 
     private FirebaseFirestore firestore;
 
+    private MaterialButton seatBookedButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_routes_web_view);
+        init();
         firestore =FirebaseFirestore.getInstance();
 
         activity_name = findViewById(R.id.activity_name);
@@ -47,8 +53,20 @@ public class RoutesWebView extends AppCompatActivity {
         webSettings.setJavaScriptEnabled(true);
         backToActivity.setOnClickListener(view -> finish());
 
+
+        seatBookedButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RoutesWebView.this,SeatStatusActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
+    private void init(){
+        seatBookedButton= findViewById(R.id.seatBookedButton);
+    }
     private void getSelectedBusInfo(String doc_id){
         firestore.collection(NodeName.BUS_NODE).document(doc_id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override

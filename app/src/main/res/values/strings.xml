@@ -41,6 +41,7 @@
     <string name="change_password">Change Password</string>
     <string name="contact_us">Contact Us</string>
     <string name="faq">FAQ</string>
+    <string name="routes_details">Route Details</string>
     <string name="feedback">Feedback</string>
     <string name="creating_account_dialoge">creating account...</string>
     <string name="required">required</string>
