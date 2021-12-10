@@ -75,8 +75,8 @@ public class BusActivity extends AppCompatActivity {
                 String routes_description = "Dhanmondi - Sobhanbag <> Shyamoli Square <> Technical Mor > Majar Road Gabtoli <> Konabari Bus Stop <> Eastern Housing Rup Nogor <> Birulia Bus Stand <> Daffodil Smart City";
                 bus1.setRoutes_description(routes_description);
 
-                bus1.setLat(0.0);
-                bus1.setLon(0.0);
+                bus1.setLat(Utils.versityLatLng.latitude);
+                bus1.setLon(Utils.versityLatLng.longitude);
                 bus1.setName("Demo Name");
                 String docId = reference.child(NodeName.BUS_NODE).push().getKey();
                 bus1.setDoc_id(docId);
