@@ -159,6 +159,7 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback {
 
         MarkerOptions markerOptions = new MarkerOptions()
                 .position(latLng)
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.map_user_home_pin_icon))
                 .title("Sweet Home")
                 .snippet("current location");
         //23.752981287671716, 90.3777078984378

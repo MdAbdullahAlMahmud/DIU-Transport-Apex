@@ -7,9 +7,12 @@
         <entry key="..\:/Android Project/DIUTransportApex/app/src/main/res/drawable-v24/ic_baseline_call_24.xml" value="0.199609375" />
         <entry key="..\:/Android Project/DIUTransportApex/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.26614583333333336" />
         <entry key="..\:/Android Project/DIUTransportApex/app/src/main/res/drawable/feedback_edt_stroke.xml" value="0.199609375" />
+        <entry key="..\:/Android Project/DIUTransportApex/app/src/main/res/drawable/ic_baseline_person_pin_24.xml" value="0.10234375" />
+        <entry key="..\:/Android Project/DIUTransportApex/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.199609375" />
         <entry key="..\:/Android Project/DIUTransportApex/app/src/main/res/drawable/ic_launcher_background.xml" value="0.26614583333333336" />
         <entry key="..\:/Android Project/DIUTransportApex/app/src/main/res/layout/activity_account_registration.xml" value="0.25" />
         <entry key="..\:/Android Project/DIUTransportApex/app/src/main/res/layout/activity_contact_us.xml" value="0.176953125" />
+        <entry key="..\:/Android Project/DIUTransportApex/app/src/main/res/layout/activity_feedback.xml" value="0.1875" />
         <entry key="..\:/Android Project/DIUTransportApex/app/src/main/res/layout/activity_forgot_password.xml" value="0.25" />
         <entry key="..\:/Android Project/DIUTransportApex/app/src/main/res/layout/activity_home.xml" value="0.152" />
         <entry key="..\:/Android Project/DIUTransportApex/app/src/main/res/layout/activity_login.xml" value="0.2" />

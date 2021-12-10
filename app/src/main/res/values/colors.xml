@@ -14,7 +14,10 @@
     <color name="background">#EEEDEf</color>
     <color name="colourPrimary">#2D383F</color>
     <color name="colourPrimaryDark">#2D383F</color>
+<!--
     <color name="primaryColor">#80D516</color>
+-->
+    <color name="primaryColor">#016732</color>
     <color name="toolColor">#6EB16B</color>
 
     <color name="secondaryColor">#016732</color>
