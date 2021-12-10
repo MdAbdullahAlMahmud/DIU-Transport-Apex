@@ -40,7 +40,6 @@
     <string name="no">no</string>
     <string name="change_password">Change Password</string>
     <string name="contact_us">Contact Us</string>
-    <string name="routes_details">Routes Details</string>
     <string name="faq">FAQ</string>
     <string name="feedback">Feedback</string>
     <string name="creating_account_dialoge">creating account...</string>
@@ -72,13 +71,4 @@
     <string name="member2Phone">01303156228</string>
     <string name="member2Email">ashraful15-12271@diu.edu.bd</string>
     <string name="mailSubject">DIU Transportation Apex Report</string>
-    <string name="title_activity_bus">BusActivity</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 </resources>
