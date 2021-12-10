@@ -19,4 +19,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include" />
 
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Seat Book"
+        android:textAllCaps="false"
+        android:layout_margin="@dimen/_10sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:cornerRadius="@dimen/_10sdp"
+        android:textColor="@color/white"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
