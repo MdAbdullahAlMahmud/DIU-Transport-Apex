@@ -10,9 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
-import com.socalledengineers.diutransportapex.model.Bus;
 import com.socalledengineers.diutransportapex.model.BusItem;
-import com.socalledengineers.diutransportapex.utils.Display;
 
 import java.util.ArrayList;
 
@@ -66,8 +64,8 @@ public class RoutesAdapter extends RecyclerView.Adapter<RoutesAdapter.RoutesView
         public RoutesViewHolder(@NonNull View itemView) {
             super(itemView);
             tripTimeTV = itemView.findViewById(R.id.tripTimeTV);
-            tripFromTV = itemView.findViewById(R.id.tripFromTV);
-            tripToTV = itemView.findViewById(R.id.tripToTV);
+            tripFromTV = itemView.findViewById(R.id.routesBusName);
+            tripToTV = itemView.findViewById(R.id.routesBusDeparuture);
             tripStartButton = itemView.findViewById(R.id.tripStartButton);
         }
     }

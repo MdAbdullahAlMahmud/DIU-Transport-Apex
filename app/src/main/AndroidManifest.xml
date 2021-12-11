@@ -14,6 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DIUTransportApex">
         <activity
+            android:name=".ui.routes.BusRoutesWebView"
+            android:exported="false" />
+        <activity
+            android:name=".ui.routes.RoutesListActivity"
+            android:exported="false" />
+        <activity
             android:name=".DriverLocationShareActivity"
             android:exported="false" />
         <activity
@@ -21,7 +27,7 @@
             android:exported="false" />
         <activity
             android:name=".DemoUserHome"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".SeatStatusActivity"
             android:exported="true" />
