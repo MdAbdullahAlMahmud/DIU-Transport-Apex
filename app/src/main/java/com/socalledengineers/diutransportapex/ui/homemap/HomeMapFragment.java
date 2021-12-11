@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -40,9 +39,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.socalledengineers.diutransportapex.DriverLocationShareActivity;
 import com.socalledengineers.diutransportapex.R;
-import com.socalledengineers.diutransportapex.DriverBusListActivity;
+import com.socalledengineers.diutransportapex.driver.DriverBusListActivity;
 import com.socalledengineers.diutransportapex.RoutesWebView;
 import com.socalledengineers.diutransportapex.model.Bus;
 import com.socalledengineers.diutransportapex.model.BusItem;
@@ -51,7 +49,6 @@ import com.socalledengineers.diutransportapex.utils.NodeName;
 import com.socalledengineers.diutransportapex.utils.Utils;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 
 public class HomeMapFragment extends Fragment implements OnMapReadyCallback {
