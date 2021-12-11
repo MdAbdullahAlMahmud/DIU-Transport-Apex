@@ -193,6 +193,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:clickable="true"
+                    android:visibility="gone"
                     android:drawablePadding="20dp"
                     android:drawableTint="@color/grey_800"
                     android:foreground="?selectableItemBackground"
@@ -207,13 +208,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:background="@color/navStrockColor"
-                android:visibility="visible" />
+
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"

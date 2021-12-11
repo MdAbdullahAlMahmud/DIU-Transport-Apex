@@ -174,7 +174,6 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback {
         Location.distanceBetween(latLng.latitude, latLng.longitude,
                 versityLatLng.latitude, versityLatLng.longitude, results);
         float distance = results[0];
-        Display.successToast(getContext(),distance+"");
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, zoom);
         googleMap.animateCamera(cameraUpdate);
 
