@@ -228,7 +228,7 @@
 
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/makeTripButton"
+                android:id="@+id/addBussButton"
                 android:layout_width="@dimen/_100sdp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
