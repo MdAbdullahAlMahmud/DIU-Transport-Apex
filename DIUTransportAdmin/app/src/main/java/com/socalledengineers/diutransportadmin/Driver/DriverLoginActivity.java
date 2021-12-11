@@ -1,10 +1,12 @@
-package com.socalledengineers.diutransportadmin;
+package com.socalledengineers.diutransportadmin.Driver;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.socalledengineers.diutransportadmin.R;
 
 public class DriverLoginActivity extends AppCompatActivity {
 

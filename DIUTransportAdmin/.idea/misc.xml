@@ -3,11 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Administrator/Desktop/DIU-Transport-Apex/DIUTransportAdmin/app/src/main/res/drawable/feedback_edt_stroke.xml" value="0.11388888888888889" />
+        <entry key="..\:/Users/Administrator/Desktop/DIU-Transport-Apex/DIUTransportAdmin/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.11388888888888889" />
+        <entry key="..\:/Users/Administrator/Desktop/DIU-Transport-Apex/DIUTransportAdmin/app/src/main/res/drawable/ic_baseline_location_on_24.xml" value="0.11388888888888889" />
         <entry key="..\:/Users/Administrator/Desktop/DIU-Transport-Apex/DIUTransportAdmin/app/src/main/res/layout/activity_add_bus.xml" value="0.25" />
         <entry key="..\:/Users/Administrator/Desktop/DIU-Transport-Apex/DIUTransportAdmin/app/src/main/res/layout/activity_add_driver.xml" value="0.25" />
         <entry key="..\:/Users/Administrator/Desktop/DIU-Transport-Apex/DIUTransportAdmin/app/src/main/res/layout/activity_admin_dashboard.xml" value="0.1272644927536232" />
+        <entry key="..\:/Users/Administrator/Desktop/DIU-Transport-Apex/DIUTransportAdmin/app/src/main/res/layout/activity_driver_bus_list.xml" value="0.16077898550724637" />
         <entry key="..\:/Users/Administrator/Desktop/DIU-Transport-Apex/DIUTransportAdmin/app/src/main/res/layout/activity_driver_login.xml" value="0.19635416666666666" />
         <entry key="..\:/Users/Administrator/Desktop/DIU-Transport-Apex/DIUTransportAdmin/app/src/main/res/layout/activity_main.xml" value="0.19635416666666666" />
+        <entry key="..\:/Users/Administrator/Desktop/DIU-Transport-Apex/DIUTransportAdmin/app/src/main/res/layout/activity_routes_list.xml" value="0.16077898550724637" />
+        <entry key="..\:/Users/Administrator/Desktop/DIU-Transport-Apex/DIUTransportAdmin/app/src/main/res/layout/app_toolbar.xml" value="0.16077898550724637" />
+        <entry key="..\:/Users/Administrator/Desktop/DIU-Transport-Apex/DIUTransportAdmin/app/src/main/res/layout/driver_trip_item.xml" value="0.10280797101449275" />
         <entry key="..\:/Users/Administrator/Desktop/DIU-Transport-Apex/DIUTransportAdmin/app/src/main/res/layout/layout_driver_list.xml" value="0.67" />
         <entry key="..\:/Users/Md. Ashraful Islam/My codes/Github/DIU-Transport-Apex/DIUTransportAdmin/app/src/main/res/drawable-v24/action_bar_design.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/Md. Ashraful Islam/My codes/Github/DIU-Transport-Apex/DIUTransportAdmin/app/src/main/res/drawable-v24/ic_baseline_menu_24.xml" value="0.37864583333333335" />
