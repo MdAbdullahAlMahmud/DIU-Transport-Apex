@@ -38,7 +38,7 @@ public class AddBusActivity extends AppCompatActivity {
         triptimesEdt = findViewById(R.id.timeEdt);
         seatnumberEdt = findViewById(R.id.seatEdt);
         
-        addBusBtn = findViewById(R.id.addDriverButton);
+        addBusBtn = findViewById(R.id.addDriverButton);///
 
 
 
