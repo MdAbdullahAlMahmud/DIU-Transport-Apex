@@ -1,36 +1,23 @@
-package com.socalledengineers.diutransportapex;
+package com.socalledengineers.diutransportapex.driver;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import android.Manifest;
-import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Location;
 import android.location.LocationManager;
-import android.location.LocationRequest;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
-import android.provider.Settings;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationCallback;
-import com.google.android.gms.location.LocationListener;
-import com.google.android.gms.location.LocationResult;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.socalledengineers.diutransportapex.HomeActivity;
+import com.socalledengineers.diutransportapex.R;
 import com.socalledengineers.diutransportapex.location.GpsTracker;
 import com.socalledengineers.diutransportapex.utils.Display;
 import com.socalledengineers.diutransportapex.utils.NodeName;
@@ -127,7 +114,7 @@ public class DriverLocationShareActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = new Intent(DriverLocationShareActivity.this,HomeActivity.class);
+        Intent intent = new Intent(DriverLocationShareActivity.this, HomeActivity.class);
         startActivity(intent);
     }
 

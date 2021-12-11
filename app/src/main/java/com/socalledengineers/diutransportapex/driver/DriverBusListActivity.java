@@ -1,4 +1,4 @@
-package com.socalledengineers.diutransportapex;
+package com.socalledengineers.diutransportapex.driver;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,27 +12,20 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
+import com.socalledengineers.diutransportapex.R;
+import com.socalledengineers.diutransportapex.RoutesAdapter;
 import com.socalledengineers.diutransportapex.model.Bus;
 import com.socalledengineers.diutransportapex.model.BusItem;
-import com.socalledengineers.diutransportapex.model.TripItem;
-import com.socalledengineers.diutransportapex.utils.Display;
 import com.socalledengineers.diutransportapex.utils.NodeName;
-import com.socalledengineers.diutransportapex.utils.Utils;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 public class DriverBusListActivity extends AppCompatActivity {
 
@@ -103,7 +96,7 @@ public class DriverBusListActivity extends AppCompatActivity {
                         adapter.setOnStartTripClickListener(new RoutesAdapter.OnStartTripClickListener() {
                             @Override
                             public void onTripClick(BusItem bus) {
-                                Intent intent  = new Intent(DriverBusListActivity.this,DriverLocationShareActivity.class);
+                                Intent intent  = new Intent(DriverBusListActivity.this, DriverLocationShareActivity.class);
                                 intent.putExtra(NodeName.INTENT_INTENT_BUS_ID,bus.getDoc_id());
                                 startActivity(new Intent(DriverBusListActivity.this,DriverLocationShareActivity.class));
                                 startActivity(intent);

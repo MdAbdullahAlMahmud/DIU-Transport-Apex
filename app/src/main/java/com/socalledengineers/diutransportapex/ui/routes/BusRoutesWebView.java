@@ -2,15 +2,19 @@ package com.socalledengineers.diutransportapex.ui.routes;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.material.button.MaterialButton;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.socalledengineers.diutransportapex.R;
+import com.socalledengineers.diutransportapex.SeatStatusActivity;
 import com.socalledengineers.diutransportapex.utils.NodeName;
 
 public class BusRoutesWebView extends AppCompatActivity {
@@ -20,6 +24,7 @@ public class BusRoutesWebView extends AppCompatActivity {
     private ImageView backToActivity;
     private TextView activity_name;
 
+    private MaterialButton seatBook;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +47,12 @@ public class BusRoutesWebView extends AppCompatActivity {
             mWebView.loadUrl(routes_url);
         }
 
+        findViewById(R.id.seatBook).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(BusRoutesWebView.this, SeatStatusActivity.class));
+            }
+        });
 
 
 

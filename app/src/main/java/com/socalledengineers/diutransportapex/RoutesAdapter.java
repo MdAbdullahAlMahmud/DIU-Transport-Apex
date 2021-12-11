@@ -69,7 +69,7 @@ public class RoutesAdapter extends RecyclerView.Adapter<RoutesAdapter.RoutesView
             tripStartButton = itemView.findViewById(R.id.tripStartButton);
         }
     }
-    interface OnStartTripClickListener{
+    public interface OnStartTripClickListener{
         void onTripClick(BusItem bus);
     }
 }

@@ -20,7 +20,7 @@
             android:name=".ui.routes.RoutesListActivity"
             android:exported="false" />
         <activity
-            android:name=".DriverLocationShareActivity"
+            android:name=".driver.DriverLocationShareActivity"
             android:exported="false" />
         <activity
             android:name=".RoutesWebView"
@@ -44,7 +44,7 @@
             android:name=".ui.contact_us.ContactUsActivity"
             android:exported="false" />
         <activity
-            android:name=".DriverBusListActivity"
+            android:name=".driver.DriverBusListActivity"
             android:exported="false" />
         <activity
             android:name=".HomeActivity"
