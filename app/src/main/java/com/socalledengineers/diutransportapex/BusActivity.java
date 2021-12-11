@@ -114,33 +114,8 @@ public class BusActivity extends AppCompatActivity {
                     dialog.dismiss();
                     Display.errorToast(BusActivity.this,task.getException().getMessage());
                 }
-
             }
         });
-
-
-       /* String document_id = firestore.collection(NodeName.BUS_NODE).document().getId();
-        bus.setDoc_id(document_id);
-
-        firestore.collection(NodeName.BUS_NODE).document(document_id).set(bus).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()){
-                    dialog.dismiss();
-                    Display.successToast(BusActivity.this,"Bus Added Successfully");
-                    Intent intent = new Intent(BusActivity.this,HomeActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
-                }else{
-
-                    dialog.dismiss();
-                    Display.errorToast(BusActivity.this,task.getException().getMessage());
-
-                }
-            }
-        });*/
-
-
 
     }
     private void  simpleInsert(){

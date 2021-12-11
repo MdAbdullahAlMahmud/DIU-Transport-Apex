@@ -11,7 +11,8 @@ import java.text.DecimalFormat;
 public class Utils {
     public static User user = null;
     public static LatLng versityLatLng = new LatLng(23.752981287671716,90.3777078984378);
-
+    public static LatLng permanentVersityLatLng = new LatLng(23.877548629296303,90.32100657331927);
+//23.877548629296303, 90.32100657331927
     public static double CalculationByDistance(LatLng StartP, LatLng EndP) {
         int Radius = 6371;// radius of earth in Km
         double lat1 = StartP.latitude;

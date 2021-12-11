@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
 import com.socalledengineers.diutransportapex.model.Bus;
+import com.socalledengineers.diutransportapex.model.BusItem;
 import com.socalledengineers.diutransportapex.utils.Display;
 
 import java.util.ArrayList;
@@ -18,10 +19,10 @@ import java.util.ArrayList;
 public class RoutesAdapter extends RecyclerView.Adapter<RoutesAdapter.RoutesViewHolder>{
 
     private Context context;
-    private ArrayList<Bus> busList;
+    private ArrayList<BusItem> busList;
 
     private  OnStartTripClickListener onStartTripClickListener;
-    public RoutesAdapter(Context context, ArrayList<Bus> busList) {
+    public RoutesAdapter(Context context, ArrayList<BusItem> busList) {
         this.context = context;
         this.busList = busList;
     }
@@ -35,7 +36,7 @@ public class RoutesAdapter extends RecyclerView.Adapter<RoutesAdapter.RoutesView
 
     @Override
     public void onBindViewHolder(@NonNull RoutesViewHolder holder, int position) {
-        Bus bus = busList.get(position);
+        BusItem bus = busList.get(position);
         holder.tripTimeTV.setText(bus.getStarting_time());
         holder.tripFromTV.setText(bus.getFrom());
         holder.tripToTV.setText(bus.getTo());
@@ -71,6 +72,6 @@ public class RoutesAdapter extends RecyclerView.Adapter<RoutesAdapter.RoutesView
         }
     }
     interface OnStartTripClickListener{
-        void onTripClick(Bus bus);
+        void onTripClick(BusItem bus);
     }
 }

@@ -14,13 +14,13 @@
         />
     <item
         android:id="@+id/activityItem"
-        android:icon="@drawable/ic_baseline_home_24"
-        android:title="Activity"
+        android:icon="@drawable/ic_baseline_emoji_transportation_24"
+        android:title="My Activity"
 
         />
     <item
         android:id="@+id/profileItem"
-        android:icon="@drawable/ic_baseline_notifications_active_24"
+        android:icon="@drawable/ic_baseline_person_24"
         android:title="Profile"
         />
 

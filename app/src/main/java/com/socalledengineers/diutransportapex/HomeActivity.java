@@ -64,7 +64,7 @@ public class HomeActivity extends AppCompatActivity {
                         startActivity(new Intent(HomeActivity.this, DriverBusListActivity.class));
                         return true;
                     case R.id.profileItem:
-                        setUpFragment(new HomeMapFragment());
+                        startActivity(new Intent(HomeActivity.this, ProfileActivity.class));
                         return true;
                     default:
                         return false;
@@ -85,7 +85,6 @@ public class HomeActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction().replace(R.id.frameContainer, fragment)
                     .commit();
         }
-
     }
 
     private void init() {

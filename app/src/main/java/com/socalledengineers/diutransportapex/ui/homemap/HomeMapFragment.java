@@ -244,6 +244,7 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback {
                         String from_to = from +" ---> " + to;
                         addBusToMap(latLng,bus.getName(),from_to,bus.getDoc_id());
                     }
+                    Log.v("Bus","Bus Size "+ busItems.size());
 
                 }
             }
@@ -264,7 +265,7 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback {
     }
 
     private  void addBusToMap(LatLng lat_lng, String name, String from_to, String doc_id){
-        googleMap.clear();
+        //googleMap.clear();
         MarkerOptions map_marker = new MarkerOptions()
                 .position(lat_lng)
                 .title(from_to)
