@@ -8,19 +8,14 @@
         />
 
     <item
-        android:id="@+id/requestItem"
-        android:icon="@drawable/ic_baseline_notifications_active_24"
-        android:title="Request"
+        android:id="@+id/menuRoutesListItem"
+        android:icon="@drawable/ic_baseline_map_24"
+        android:title="Routes List"
         />
-    <item
-        android:id="@+id/activityItem"
-        android:icon="@drawable/ic_baseline_home_24"
-        android:title="Activity"
 
-        />
     <item
         android:id="@+id/profileItem"
-        android:icon="@drawable/ic_baseline_notifications_active_24"
+        android:icon="@drawable/ic_baseline_person_24"
         android:title="Profile"
         />
 

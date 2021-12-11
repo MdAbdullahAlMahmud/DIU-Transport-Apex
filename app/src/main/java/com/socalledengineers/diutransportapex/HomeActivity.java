@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,21 +18,17 @@ import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.mkrlabs.customstatusbar.CustomStatusBar;
-import com.socalledengineers.diutransportapex.model.Bus;
 import com.socalledengineers.diutransportapex.ui.contact_us.ContactUsActivity;
 import com.socalledengineers.diutransportapex.ui.faq.FAQActivity;
 import com.socalledengineers.diutransportapex.ui.feedback.FeedbackActivity;
 import com.socalledengineers.diutransportapex.ui.homemap.HomeMapFragment;
 import com.socalledengineers.diutransportapex.ui.login.LoginActivity;
 import com.socalledengineers.diutransportapex.ui.profile.ProfileActivity;
-import com.socalledengineers.diutransportapex.utils.Display;
+import com.socalledengineers.diutransportapex.ui.routes.RoutesListActivity;
 
 public class HomeActivity extends AppCompatActivity {
     private FrameLayout frameContainer;
-
     private BottomNavigationView homeBottomNavigation;
-    private AppCompatImageButton navMenuButton;
     private DrawerLayout home_drawer;
     private AppCompatImageButton navButton;
     private TextView navContactUs,navFeedBack,navLogoutTV,navFAQTV,navProfileTV;
@@ -57,14 +52,12 @@ public class HomeActivity extends AppCompatActivity {
                     case R.id.homeItem:
                         setUpFragment(new HomeMapFragment());
                         return true;
-                    case R.id.requestItem:
-                        startActivity(new Intent(HomeActivity.this, BusActivity.class));
+                    case R.id.menuRoutesListItem:
+                        startActivity(new Intent(HomeActivity.this, RoutesListActivity.class));
                         return true;
-                    case R.id.activityItem:
-                        startActivity(new Intent(HomeActivity.this, DriverBusListActivity.class));
-                        return true;
+
                     case R.id.profileItem:
-                        setUpFragment(new HomeMapFragment());
+                        startActivity(new Intent(HomeActivity.this, ProfileActivity.class));
                         return true;
                     default:
                         return false;
@@ -85,7 +78,6 @@ public class HomeActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction().replace(R.id.frameContainer, fragment)
                     .commit();
         }
-
     }
 
     private void init() {

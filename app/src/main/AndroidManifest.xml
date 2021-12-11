@@ -14,17 +14,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DIUTransportApex">
         <activity
+            android:name=".ui.routes.BusRoutesWebView"
+            android:exported="false" />
+        <activity
+            android:name=".ui.routes.RoutesListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DriverLocationShareActivity"
+            android:exported="false" />
+        <activity
             android:name=".RoutesWebView"
             android:exported="false" />
         <activity
             android:name=".DemoUserHome"
-            android:exported="true" >
-
-
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".SeatStatusActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".ui.feedback.FeedbackActivity"
             android:exported="false" />
@@ -54,7 +60,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity android:name=".ui.registration.AccountRegistrationActivity" />
         <activity android:name=".ui.login.ForgotPasswordActivity" />
@@ -69,7 +74,6 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
     </application>
 
 </manifest>

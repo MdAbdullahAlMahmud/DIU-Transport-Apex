@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
@@ -14,11 +15,16 @@ import android.widget.TextView;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.socalledengineers.diutransportapex.model.Bus;
+import com.socalledengineers.diutransportapex.model.BusItem;
 import com.socalledengineers.diutransportapex.model.TripItem;
 import com.socalledengineers.diutransportapex.utils.Display;
 import com.socalledengineers.diutransportapex.utils.NodeName;
@@ -33,125 +39,83 @@ public class DriverBusListActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private FirebaseFirestore firestore;
     private ArrayList<Bus> busArrayList;
+    private ArrayList<BusItem> busItemArrayList;
     private RoutesAdapter adapter;
 
     ImageView backToActivity;
     TextView activity_name;
+
+    private DatabaseReference reference;
     private ProgressDialog dialog ;
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_routes_list);
 
         dialog = new ProgressDialog(this);
-        init();
-        initRecycleView();
+        reference = FirebaseDatabase.getInstance().getReference();
+        mAuth =FirebaseAuth.getInstance();
+
         activity_name = findViewById(R.id.activity_name);
         backToActivity = findViewById(R.id.finish_activity);
 
+        init();
+        initRecycleView();
+
+        backToActivity.setOnClickListener(view -> finish());
+
         activity_name.setText(R.string.busTrip);
-
-        adapter = new RoutesAdapter(this,busArrayList);
-
+        getBusOfDriver();
     }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        getAllBusFromDatabase();
-    }
-
-    private void getAllBusFromDatabase(){
-        busArrayList.clear();
-        firestore.collection(NodeName.BUS_NODE).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-
-                if (task.isSuccessful()){
-                    for (DocumentSnapshot snapshot : task.getResult().getDocuments()){
-                        Bus bus = snapshot.toObject(Bus.class);
-                        busArrayList.add(bus);
-                    }
-
-
-                    adapter = new RoutesAdapter(DriverBusListActivity.this,busArrayList);
-                    recyclerView.setAdapter(adapter);
-
-
-
-                    adapter.setOnStartTripClickListener(new RoutesAdapter.OnStartTripClickListener() {
-                        @Override
-                        public void onTripClick(Bus bus) {
-
-                            insertANewTrip(bus);
-
-                        }
-                    });
-
-                    adapter.notifyDataSetChanged();
-
-                }
-
-            }
-        });
-//23.760686416205747, 90.372689161463
-    }
-
-    private void insertANewTrip(Bus bus) {
-
-        dialog.setTitle("Processing ....");
-        dialog.setMessage("please wait");
-        dialog.show();
-        String trip_id = firestore.collection(NodeName.TRIP_LIST_NODE).document().getId();
-        List<String> seatList = new ArrayList();
-        List<String> transactionList = new ArrayList();
-        for (int i = 0; i < 30; i++) {
-            seatList.add("0");
-            transactionList.add("0");
-        }
-        long timestamp = new Date().getTime();
-        TripItem tripItem = new TripItem(bus.getDoc_id(),trip_id,seatList,transactionList,bus.getDriver_uid(),timestamp);
-
-        firestore.collection(bus.getDoc_id())
-                .document(trip_id)
-                .set(tripItem)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()){
-                            Display.successToast(DriverBusListActivity.this,"Trip Item Success");
-
-                            dialog.dismiss();
-                        }else {
-                            Log.v("Driver", "Error " + task.getException().getMessage());
-                            Display.errorToast(DriverBusListActivity.this,"Error "+ task.getException().getMessage());
-                            dialog.dismiss();
-                        }
-                    }
-                });
-
-
-   /* (tripItem).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentReference> task) {
-                if (task.isSuccessful()){
-                    Display.successToast(DriverBusListActivity.this,"Trip Item Success");
-
-                    dialog.dismiss();
-                }else {
-                    Log.v("Driver", "Error " + task.getException().getMessage());
-                    Display.errorToast(DriverBusListActivity.this,"Error "+ task.getException().getMessage());
-                    dialog.dismiss();
-                }
-            }
-        });*/
-    }
-
 
     private void init(){
         busArrayList = new ArrayList<>();
+        busItemArrayList = new ArrayList<>();
         recyclerView = findViewById(R.id.busRouteList);
         firestore = FirebaseFirestore.getInstance();
+
+    }
+
+    private void getBusOfDriver(){
+        busItemArrayList.clear();
+        reference.child(NodeName.BUS_NODE).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (task.isSuccessful()){
+                    for (DataSnapshot dataSnapshot : task.getResult().getChildren()){
+
+                        if (dataSnapshot.exists()){
+                            BusItem busItem = dataSnapshot.getValue(BusItem.class);
+                            busItemArrayList.add(busItem);
+
+                            Log.v("Driver", "Bus Name "+ busItem.getName());
+                            /*
+                            if (busItem.getDriver_uid().equals(uid)){
+                                busItemArrayList.add(busItem);
+                            }*/
+
+                        }
+                        adapter = new RoutesAdapter(DriverBusListActivity.this,busItemArrayList);
+                        recyclerView.setAdapter(adapter);
+                        adapter.notifyDataSetChanged();
+
+                        adapter.setOnStartTripClickListener(new RoutesAdapter.OnStartTripClickListener() {
+                            @Override
+                            public void onTripClick(BusItem bus) {
+                                Intent intent  = new Intent(DriverBusListActivity.this,DriverLocationShareActivity.class);
+                                intent.putExtra(NodeName.INTENT_INTENT_BUS_ID,bus.getDoc_id());
+                                startActivity(new Intent(DriverBusListActivity.this,DriverLocationShareActivity.class));
+                                startActivity(intent);
+                                //Display.infoToast(DriverBusListActivity.this,"Bus Name " + bus.getName());
+                            }
+                        });
+
+
+                    }
+                }
+            }
+        });
 
     }
     private void initRecycleView() {

@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -38,6 +40,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.socalledengineers.diutransportapex.DriverLocationShareActivity;
 import com.socalledengineers.diutransportapex.R;
 import com.socalledengineers.diutransportapex.DriverBusListActivity;
 import com.socalledengineers.diutransportapex.RoutesWebView;
@@ -171,7 +174,6 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback {
         Location.distanceBetween(latLng.latitude, latLng.longitude,
                 versityLatLng.latitude, versityLatLng.longitude, results);
         float distance = results[0];
-        Display.successToast(getContext(),distance+"");
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, zoom);
         googleMap.animateCamera(cameraUpdate);
 
@@ -224,6 +226,11 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback {
         });
 //23.760686416205747, 90.372689161463
     }
+    Handler handler = new Handler();
+    Runnable runnable;
+    int delay = 5000;
+
+
     private  void getAllLiveBus(){
         busItems.clear();
         databaseReference.child(NodeName.BUS_NODE).addValueEventListener(new ValueEventListener() {
@@ -244,6 +251,7 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback {
                         String from_to = from +" ---> " + to;
                         addBusToMap(latLng,bus.getName(),from_to,bus.getDoc_id());
                     }
+                    Log.v("Bus","Bus Size "+ busItems.size());
 
                 }
             }
@@ -264,7 +272,7 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback {
     }
 
     private  void addBusToMap(LatLng lat_lng, String name, String from_to, String doc_id){
-        googleMap.clear();
+        //googleMap.clear();
         MarkerOptions map_marker = new MarkerOptions()
                 .position(lat_lng)
                 .title(from_to)
@@ -317,8 +325,6 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         this.googleMap = googleMap;
-        Display.successToast(getContext(), "Map Ready");
-
         if (mLocationPermission) {
             getDeviceCurrentLocation();
         }
