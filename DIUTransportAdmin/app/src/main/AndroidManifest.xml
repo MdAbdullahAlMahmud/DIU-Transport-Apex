@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DIUTransportAdmin">
         <activity
+            android:name=".EventmanagementActivity"
+            android:exported="false" />
+        <activity
             android:name=".Driver.DriverLocationShareActivity"
             android:exported="false" />
         <activity
