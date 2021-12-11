@@ -10,22 +10,34 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DIUTransportAdmin">
         <activity
+            android:name=".AddDriver"
+            android:exported="true">
+
+        </activity>
+        <activity
             android:name=".AddBusActivity"
-            android:exported="true" >
+            android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
-            android:name=".AdminDashboard"
+            android:name=".DriverLoginActivity"
             android:exported="true">
+
+
 
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".AdminDashboard"
             android:exported="true"></activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" />
     </application>
 
 </manifest>
