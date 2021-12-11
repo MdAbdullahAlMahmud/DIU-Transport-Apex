@@ -103,7 +103,10 @@ public class DriverBusListActivity extends AppCompatActivity {
                         adapter.setOnStartTripClickListener(new RoutesAdapter.OnStartTripClickListener() {
                             @Override
                             public void onTripClick(BusItem bus) {
+                                Intent intent  = new Intent(DriverBusListActivity.this,DriverLocationShareActivity.class);
+                                intent.putExtra(NodeName.INTENT_INTENT_BUS_ID,bus.getDoc_id());
                                 startActivity(new Intent(DriverBusListActivity.this,DriverLocationShareActivity.class));
+                                startActivity(intent);
                                 //Display.infoToast(DriverBusListActivity.this,"Bus Name " + bus.getName());
                             }
                         });
