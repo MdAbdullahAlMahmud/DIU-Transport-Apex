@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,13 +29,13 @@ import java.util.List;
 public class AddBusActivity extends AppCompatActivity {
 
 
-    EditText busnameEdt,busidEdt,drivernameEdt,startingpointEdt,destinationEdt,tripnumberEdt,triptimesEdt,seatnumberEdt;
+    EditText busnameEdt,busidEdt,drivernameEdt,startingpointEdt,destinationEdt,tripnumberEdt,triptimesEdt,seatnumberEdt,routeUrlEdt,fromEdt;
     Button addBusBtn;
     MaterialButton addBussButton;
     private DatabaseReference reference;
 
     private ProgressDialog dialog;
-    String busName,busId,driverName,from,to,driver_uid;
+    String busName,busId, from_bus, to_bus,driver_uid,routeURL,startingTime;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +52,45 @@ public class AddBusActivity extends AppCompatActivity {
             busName = busidEdt.getText().toString();
             busId= busidEdt.getText().toString();
             driver_uid = drivernameEdt.getText().toString();
+            routeURL = routeUrlEdt.getText().toString();
+            from_bus = startingpointEdt.getText().toString();
+            to_bus = destinationEdt.getText().toString();
+            startingTime = triptimesEdt.getText().toString();
+
+            if (TextUtils.isEmpty(busName)){
+                busnameEdt.setError("required");
+                return;
+            }
+            if (TextUtils.isEmpty(busId)){
+            busidEdt.setError("required");
+                return;
+            }
+        if (TextUtils.isEmpty(driver_uid)){
+            drivernameEdt.setError("required");
+                return;
+            }
+
+        if (TextUtils.isEmpty(routeURL)){
+            routeUrlEdt.setError("required");
+                return;
+            }
+         if (TextUtils.isEmpty(from_bus)){
+            startingpointEdt.setError("required");
+                return;
+            }
+
+        if (TextUtils.isEmpty(to_bus)){
+            destinationEdt.setError("required");
+                return;
+            }
+         if (TextUtils.isEmpty(startingTime)){
+             triptimesEdt.setError("required");
+                return;
+            }
+
+         getBusData();
+
+
 
 
         }
@@ -76,24 +116,24 @@ public class AddBusActivity extends AppCompatActivity {
         bus1.setLat(diuLocation.longitude);
 
 
-        String starting_time = "7.15 AM";
+        String starting_time = startingTime;
         bus1.setStarting_time(starting_time);
         String driver_uid = "DiNQKw6QSgT5EXrglEmjt60vQNr1";
         bus1.setDriver_uid(driver_uid);
 
-        String from = "Dhanmondi";
+        String from = from_bus;
         bus1.setFrom(from);
-        String to = "DSC";
+        String to = to_bus;
         bus1.setTo(to);
-        String routes_name = "Dhanmondi <> DSC";
+        String routes_name = " ";
         bus1.setRoutes_name(routes_name);
 
-        String routes_description = "Dhanmondi - Sobhanbag <> Shyamoli Square <> Technical Mor > Majar Road Gabtoli <> Konabari Bus Stop <> Eastern Housing Rup Nogor <> Birulia Bus Stand <> Daffodil Smart City";
+        String routes_description ="";
         bus1.setRoutes_description(routes_description);
 
         bus1.setLat(Utils.versityLatLng.latitude);
         bus1.setLon(Utils.versityLatLng.longitude);
-        bus1.setName("Demo Name");
+        bus1.setName(busName);
 
         String docId = reference.child(NodeName.BUS_TRIP_NODE).push().getKey();
         bus1.setDoc_id(docId);
@@ -132,17 +172,16 @@ public class AddBusActivity extends AppCompatActivity {
     }
     private void init(){
 
-
+        dialog = new ProgressDialog(this);
         addBussButton = findViewById(R.id.addBussButton);
         busnameEdt = findViewById(R.id.busName);
         busidEdt = findViewById(R.id.busId);
         drivernameEdt = findViewById(R.id.driverName);
         startingpointEdt = findViewById(R.id.fromEdt);
         destinationEdt = findViewById(R.id.toEdt);
-        tripnumberEdt = findViewById(R.id.tripEdt);
+        routeUrlEdt = findViewById(R.id.routeUrlEdt);
         triptimesEdt = findViewById(R.id.timeEdt);
-        seatnumberEdt = findViewById(R.id.seatEdt);
-        
+
         addBusBtn = findViewById(R.id.addDriverButton);///
 
 

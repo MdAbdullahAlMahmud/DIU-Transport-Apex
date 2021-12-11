@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.socalledengineers.diutransportadmin.Driver.DriverBusListActivity;
+
 public class AdminDashboard extends AppCompatActivity {
     private Button adminBus;
 
@@ -22,6 +24,20 @@ public class AdminDashboard extends AppCompatActivity {
                 startActivity(new Intent(AdminDashboard.this,BusListActivity.class));
             }
         });
+        findViewById(R.id.adminDriverAdd).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AdminDashboard.this,AddDriver.class));
+            }
+        });
+        findViewById(R.id.adminDriverControll).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AdminDashboard.this, DriverBusListActivity.class));
+            }
+        });
+
+
     }
     private void init(){
         adminBus =findViewById(R.id.adminBus);

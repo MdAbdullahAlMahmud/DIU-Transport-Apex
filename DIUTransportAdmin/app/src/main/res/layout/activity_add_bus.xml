@@ -96,7 +96,7 @@
                 android:layout_height="wrap_content"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_margin="10dp"
-                android:hint="Driver Name"
+                android:hint="Driver UID"
                 app:boxStrokeColor="@color/white"
                 android:textColorHint="@color/white"
                 app:hintTextColor="@color/white"
@@ -130,7 +130,7 @@
                     android:layout_height="wrap_content"
                     android:textCursorDrawable="@null"
                     android:textColor="@color/white"
-                    android:inputType="textPassword"
+                    android:inputType="text"
                     />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -156,34 +156,13 @@
                     />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="@dimen/_250sdp"
-                android:layout_height="wrap_content"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_margin="10dp"
-                android:hint="Trip number"
-                app:boxStrokeColor="@color/white"
-                android:textColorHint="@color/white"
-                app:hintTextColor="@color/white"
-                app:backgroundTint="@color/white">
-
-
-                <EditText
-                    android:id="@+id/tripEdt"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textCursorDrawable="@null"
-                    android:textColor="@color/white"
-                    android:inputType="textPassword"
-                    />
-            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="@dimen/_250sdp"
                 android:layout_height="wrap_content"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_margin="10dp"
-                android:hint="Trip time(use comma ex: 8:30pm,9:00pm)"
+                android:hint="starting time"
                 app:boxStrokeColor="@color/white"
                 android:textColorHint="@color/white"
                 app:hintTextColor="@color/white"
@@ -196,7 +175,7 @@
                     android:layout_height="wrap_content"
                     android:textCursorDrawable="@null"
                     android:textColor="@color/white"
-                    android:inputType="textPassword"
+                    android:inputType="text"
                     />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -205,7 +184,7 @@
                 android:layout_height="wrap_content"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_margin="10dp"
-                android:hint="Seat number"
+                android:hint="Route URL"
                 app:boxStrokeColor="@color/white"
                 android:textColorHint="@color/white"
                 app:hintTextColor="@color/white"
@@ -213,12 +192,12 @@
 
 
                 <EditText
-                    android:id="@+id/seatEdt"
+                    android:id="@+id/routeUrlEdt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textCursorDrawable="@null"
                     android:textColor="@color/white"
-                    android:inputType="textPassword"
+                    android:inputType="text"
                     />
             </com.google.android.material.textfield.TextInputLayout>
 

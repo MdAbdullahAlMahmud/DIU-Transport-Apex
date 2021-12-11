@@ -8,6 +8,8 @@ public class NodeName {
     public static String BUS_TRIP_NODE = "Bus_Trip_List";
     public static String FEEDBACK_NODE = "Feedbacks";
     public static String BUS_NODE = "Bus";
+    public static String INTENT_INTENT_BUS_ID="INTENT_BUS_ID";
+
 
 
 }

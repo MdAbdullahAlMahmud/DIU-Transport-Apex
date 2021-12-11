@@ -30,6 +30,8 @@ import com.socalledengineers.diutransportadmin.model.BusItem;
 import com.socalledengineers.diutransportadmin.utils.NodeName;
 
 
+import org.w3c.dom.Node;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -104,7 +106,9 @@ public class DriverBusListActivity extends AppCompatActivity {
                         adapter.setOnStartTripClickListener(new RoutesAdapter.OnStartTripClickListener() {
                             @Override
                             public void onTripClick(BusItem bus) {
-                                startActivity(new Intent(DriverBusListActivity.this,DriverLocationShareActivity.class));
+                                Intent intent = new Intent(DriverBusListActivity.this,DriverLocationShareActivity.class);
+                                intent.putExtra(NodeName.INTENT_INTENT_BUS_ID,bus.getDoc_id());
+                                startActivity(intent);
                             }
                         });
 

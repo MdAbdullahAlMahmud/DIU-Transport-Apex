@@ -3,9 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Android Project/DIUTransportApex/DIUTransportAdmin/app/src/main/res/layout/activity_add_bus.xml" value="0.15925925925925927" />
-        <entry key="..\:/Android Project/DIUTransportApex/DIUTransportAdmin/app/src/main/res/layout/activity_admin_dashboard.xml" value="0.15925925925925927" />
+        <entry key="..\:/Android Project/DIUTransportApex/DIUTransportAdmin/app/src/main/res/layout/activity_add_bus.xml" value="0.264" />
+        <entry key="..\:/Android Project/DIUTransportApex/DIUTransportAdmin/app/src/main/res/layout/activity_add_driver.xml" value="0.25" />
+        <entry key="..\:/Android Project/DIUTransportApex/DIUTransportAdmin/app/src/main/res/layout/activity_admin_dashboard.xml" value="0.4" />
         <entry key="..\:/Android Project/DIUTransportApex/DIUTransportAdmin/app/src/main/res/layout/activity_bus_list.xml" value="0.25" />
+        <entry key="..\:/Android Project/DIUTransportApex/DIUTransportAdmin/app/src/main/res/layout/activity_driver_location_share.xml" value="0.25" />
         <entry key="..\:/Android Project/DIUTransportApex/DIUTransportAdmin/app/src/main/res/layout/activity_driver_login.xml" value="0.25" />
         <entry key="..\:/Android Project/DIUTransportApex/DIUTransportAdmin/app/src/main/res/layout/activity_main.xml" value="0.17222222222222222" />
         <entry key="..\:/Android Project/DIUTransportApex/DIUTransportAdmin/app/src/main/res/layout/activity_routes_list.xml" value="0.25" />

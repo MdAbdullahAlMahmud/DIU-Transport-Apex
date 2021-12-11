@@ -231,13 +231,13 @@
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="5dp"
                             android:layout_marginBottom="10dp"
-                            android:text="User"
+                            android:text="Driver Controll"
                             android:textSize="16sp"
                             android:textColor="@color/grey_500"
                             android:textStyle="bold" />
 
                         <Button
-                            android:id="@+id/buttonFlowers"
+                            android:id="@+id/adminDriverControll"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@android:color/transparent"
@@ -392,7 +392,7 @@
                             android:textStyle="bold" />
 
                         <Button
-                            android:id="@+id/buttonOthers"
+                            android:id="@+id/adminDriverAdd"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@android:color/transparent"
